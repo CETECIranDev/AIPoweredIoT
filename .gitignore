@@ -1,0 +1,38 @@
+# 📁 .gitignore
+# پوشه مجازی پایتون
+venv/
+.env/
+.venv/
+env/
+.git/
+
+# پکیج‌های نصب شده
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+
+# Django
+*.log
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ML Models
+*.h5
+*.pkl
+*.joblib
+trained_models/

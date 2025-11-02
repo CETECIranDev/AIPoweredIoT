@@ -1,0 +1,25 @@
+Django
+djangorestframework
+django-cors-headers
+channels
+channels-redis
+daphne
+
+# AI/ML
+scikit-learn
+pandas
+numpy
+joblib
+
+# Utilities
+python-dotenv
+requests
+celery
+redis
+
+# Database
+psycopg2-binary
+
+# Essential Python packages
+setuptools
+wheel
