@@ -20,9 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Third party
     'rest_framework',
+    'drf_yasg',
+    'channels',
     
     # Local apps - USING STRING NAMES ONLY
     'devices',
@@ -95,3 +97,41 @@ STATIC_URL = '/static/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'users.authentication.UserJWTAuthentication',
+        'users.authentication.DeviceAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'users.throttling.DeviceDataThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'device_data': '100/hour',
+    }
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'description': "JWT Authorization header using the Bearer scheme. Example: 'Bearer <token>'",
+            'name': 'Authorization',
+            'in': 'header',
+        }
+    }
+}

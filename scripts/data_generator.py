@@ -4,9 +4,10 @@ import time
 from datetime import datetime, timedelta
 import requests
 import json
+import math
 
 class DataGenerator:
-    def __init__(self, base_url="http://localhost:8000"):
+    def __init__(self, base_url="http://127.0.0.1:8000"):
         self.base_url = base_url
         self.devices = [
             {"api_key": "temp_sensor_1", "type": "temperature", "name": "دماسنج اتاق A"},
@@ -18,6 +19,7 @@ class DataGenerator:
         """تولید مقدار سنسور بر اساس نوع و ساعت روز"""
         if sensor_type == "temperature":
             # دمای بین ۲۰ تا ۳۰ درجه با تغییرات روزانه
+
             base_temp = 25
             daily_variation = 5 * math.sin(2 * math.pi * hour / 24)
             noise = random.uniform(-1, 1)
@@ -62,17 +64,25 @@ class DataGenerator:
     def generate_historical_data(self, days=7):
         """تولید داده تاریخی برای ۷ روز گذشته"""
         print(f" تولید داده تاریخی برای {days} روز گذشته...")
+
+        print("test1")
         
         end_time = datetime.now()
         start_time = end_time - timedelta(days=days)
-        
+
+        print("test2")
+
         current_time = start_time
+
+        print("test3")
         while current_time <= end_time:
             hour = current_time.hour
-            
+            print("test4")
             for device in self.devices:
                 value = self.generate_sensor_value(device["type"], hour)
                 self.send_sensor_data(device, value)
+
+            print("test5")
             
             # به جلو برو در زمان
             current_time += timedelta(hours=1)

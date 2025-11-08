@@ -2,7 +2,8 @@
 import random
 import time
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
+
 
 class AnomalySimulator:
     def __init__(self, base_url="http://localhost:8000"):

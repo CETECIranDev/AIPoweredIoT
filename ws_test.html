@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<title>WS Test</title>
+</head>
+<body>
+<h3>WebSocket Test</h3>
+<pre id="log"></pre>
+<script>
+const deviceId = 7;  // این را با id دستگاه خودت عوض کن
+const ws = new WebSocket(`ws://127.0.0.1:8000/ws/device/7/`);
+const log = document.getElementById('log');
+
+ws.onopen = () => log.innerText += "✅ WS connected\n";
+
+ws.onmessage = e => {
+    log.innerText += "📩 Received: " + e.data + "\n";
+};
+
+ws.onclose = () => log.innerText += "❌ WS closed\n";
+</script>
+</body>
+</html>
